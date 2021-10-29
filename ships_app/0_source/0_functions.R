@@ -44,3 +44,4 @@ calculate_distance <- function(speed, time){
       
       return(distance)
 }
+
