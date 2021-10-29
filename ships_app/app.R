@@ -32,20 +32,21 @@ myGridTemplate <- grid_template(
                                 "shipname",
                                 "card",
                                 "map"),
-                  rows_height = c("50px", "50px", "50px", "auto"),
+                  rows_height = c("50px", "50px", "50px", "50px", "auto"),
                   cols_width = c("100%")))
 
-ui <- shinyUI(
-    semanticPage(
+ui <- shinyUI(semanticPage(
         grid(myGridTemplate,
              title = h1("Distance Sailed by Ships"),
              shiptype = selectInput("shiptype_dd",
                                     "Select Vessel Type:",
                                     ship_types,
+                                    selected = ship_types[1],
                                     width = "90%"),
              shipname = selectInput("shipname_dd",
                                     "Select Vessel:",
-                                    ships$ship_name),
+                                    ships$ship_name,
+                                    selected = ships$ship_name[1]),
              card = cards(
                  class = "three",
                  card(
@@ -76,7 +77,6 @@ ui <- shinyUI(
 
 
 server <- shinyServer(function(input, output, session) {
-    
     observeEvent(input$shiptype_dd, {
         x <- ships %>%
             filter(ship_type == input$shiptype_dd) %>%
@@ -95,8 +95,8 @@ server <- shinyServer(function(input, output, session) {
             filter(ship_name == input$shipname_dd)
         
         # Coordinates to center and re-zoom the view around the navigated area
-        centroid_lon = mean(datos$lon, na.rm = TRUE)
-        centroid_lat = mean(datos$lat, na.rm = TRUE)
+        centroid_lon <- mean(datos$lon, na.rm = TRUE)
+        centroid_lat <- mean(datos$lat, na.rm = TRUE)
         
         lat_min <- min(datos$lat, na.rm = TRUE)
         lat_max <- max(datos$lat, na.rm = TRUE)
