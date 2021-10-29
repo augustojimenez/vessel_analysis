@@ -1,0 +1,13 @@
+name: ships_app
+title: ships_app
+username:
+account: augusto-jimenez
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4998673
+bundleId: 5189354
+url: https://augusto-jimenez.shinyapps.io/ships_app/
+when: 1635489591.3571
+lastSyncTime: 1635489591.3571
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,13 @@
+name: vessels_app
+title: vessels_app
+username:
+account: augusto-jimenez
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4998747
+bundleId: 5189432
+url: https://augusto-jimenez.shinyapps.io/vessels_app/
+when: 1635490283.85548
+lastSyncTime: 1635490283.85548
+asMultiple: FALSE
+asStatic: FALSE
