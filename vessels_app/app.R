@@ -77,22 +77,24 @@ ui <- shinyUI(semanticPage(
 
 
 server <- shinyServer(function(input, output, session) {
-    observeEvent(input$shiptype_dd, {
+    x <- reactive({
         x <- ships %>%
-            filter(ship_type == input$shiptype_dd) %>%
+            filter(ship_type %in% input$shiptype_dd) %>%
             unique() %>%
             .$ship_name
-        
+    })
+
+    observeEvent(input$shiptype_dd, {
         updateSelectInput(session, "shipname_dd",
                           label = "Select Vessel:",
-                          choices = x,
-                          selected = x[1])
+                          choices = x(),
+                          selected = x()[1])
     })
     
     output$ships_map <- renderLeaflet({
         # Filters data to re-render map
         datos <- ships_df %>%
-            filter(ship_name == input$shipname_dd)
+                filter(ship_name == input$shipname_dd)
         
         # Coordinates to center and re-zoom the view around the navigated area
         centroid_lon <- mean(datos$lon, na.rm = TRUE)
